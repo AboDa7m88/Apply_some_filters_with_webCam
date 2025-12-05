@@ -15,7 +15,7 @@ def apply_gaussian_blur(frame_gray, sigma):
     return cv2.GaussianBlur(frame_gray, (ksize, ksize), sigma)
 
 # function to draw instructions on the frame (with a semi-transparent box)
-def draw_overlay(frame, sigma, gaussian_on, mode_name, fps):
+def draw_overlay(frame, sigma, gaussian_on, mode_name,fbs):
     overlay = frame.copy()
     h, w = frame.shape[:2]
 
@@ -43,13 +43,12 @@ def draw_overlay(frame, sigma, gaussian_on, mode_name, fps):
         "Q - Quit",
         f"Mode: {mode_name}",
         f"Sigma: {sigma:.1f}    "
-        f"Gaussian: {'ON' if gaussian_on else 'OFF'}",
-
+        f"Gaussian: {'ON' if gaussian_on else 'OFF'}"
     ]
 
     y = y0 + 24
     for i, t in enumerate(lines):
-        color = (200, 255, 200) if i < 8 else (200, 200, 255)
+        color = (200, 255, 200)
         cv2.putText(frame, t, (x0 + 8, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
         y += 18
 
